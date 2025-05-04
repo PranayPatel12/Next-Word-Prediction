@@ -1,42 +1,74 @@
-📖 Next Word Prediction Using RNN and Word Embedding
-🚀 Overview
-This project focuses on developing a next-word prediction model using Recurrent Neural Networks (RNNs) along with word embedding techniques. The primary goal is to predict the next word in a given sequence, making it useful for applications such as:
-✅ Text Auto-Completion
-✅ Predictive Text Input
-✅ Various NLP Tasks
+# 🧠 Next Word Prediction Using RNN
 
-📂 Project Structure
-The repository includes the following key files:
+This project implements a next word prediction model using Recurrent Neural Networks (RNN) and word embeddings. Given a sequence of words, the model predicts the most probable next word based on a trained corpus.
 
-📌 NLP_PRESENTATION_2024.pptx – A presentation explaining the project's objectives, methodologies, and findings.
-📌 Next Word Prediction Using RNN and Word Embedding.pdf – A detailed report covering theoretical foundations, implementation details, and model evaluation.
-📌 README.md – This document provides an overview and instructions for using the project.
+## 📚 Overview
 
-🔬 Methodology
-The development of this next-word prediction model follows these crucial steps:
+The project uses the following components:
+- **Text preprocessing** with tokenization and padding
+- **RNN model** with two `SimpleRNN` layers
+- **Embedding layer** to convert words into dense vectors
+- **Temperature sampling** for more diverse text generation
 
-1️⃣ Data Collection – Gathering a large and diverse text dataset for training.
-2️⃣ Data Preprocessing – Cleaning text, tokenization, removing stop words, and handling punctuation.
-3️⃣ Word Embedding – Converting words into dense vector representations to capture semantic relationships.
-4️⃣ Model Architecture – Designing an RNN-based model that learns sequential patterns.
-5️⃣ Training – Feeding the processed data into the model and optimizing parameters.
-6️⃣ Evaluation – Measuring accuracy and refining the model for better generalization.
+## 🛠️ Features
 
-🛠 Implementation Details
-The model is implemented in Python, utilizing powerful machine learning libraries:
+- Preprocess and tokenize a custom text corpus
+- Build a sequential RNN model for next word prediction
+- Use temperature-controlled sampling for generating next words
+- Easy integration for generating custom text sequences
 
-🔹 TensorFlow & Keras – For building and training neural networks.
-🔹 NLTK & SpaCy – For text preprocessing and tokenization.
-🔹 NumPy & Pandas – For efficient data handling.
+## 🧾 How It Works
 
-The RNN-based model is trained using word embeddings to understand and predict words based on context.
+1. Load a text file (e.g., literary works) as the training corpus.
+2. Tokenize the text and create padded input sequences.
+3. Train an RNN model using one-hot encoded labels.
+4. Predict the next word based on a given input seed text.
 
-📝 Usage
-To run this next-word prediction model, follow these steps:
+## 🧪 Example
 
-1️⃣ Clone the Repository – Download the project files to your local machine.
-2️⃣ Install Dependencies – Ensure Python libraries like TensorFlow, Keras, and NLTK are installed.
-3️⃣ Run the Model – Execute the script and test predictions based on input text.
-4️⃣ Modify & Improve – Fine-tune hyperparameters or train the model with additional data for better results.
+```python
+seed_input = "What are"
+print(generate_text(seed_input, next_words=1, temperature=0.8))
+```
 
-💡 Note: The model can be enhanced further by training on a larger dataset or using more advanced architectures like LSTMs or Transformers.
+
+📂 Folder Structure
+.
+├── NextWordPrediction.py    # Main Python script
+└── JamiesonSean.txt         # Text corpus used for training (customizable)
+
+
+🧰 Requirements
+  Python 3.x
+  TensorFlow 2.x
+  NumPy
+
+  Install dependencies with:
+  pip install tensorflow numpy
+
+
+🧠 Model Architecture
+  Embedding Layer (100-dimensional)
+  SimpleRNN Layer (256 units, return sequences)
+  SimpleRNN Layer (256 units)
+  Dense Layer (Softmax activation for prediction)
+
+
+🔁 Training
+  Model is trained for 10 epochs with a batch size of 128. You can modify the corpus or training parameters in the script.
+
+📈 Output
+  Once trained, the model can predict the next word for a given input phrase. It supports temperature tuning to control prediction randomness.
+
+.
+
+📝 Customization
+  To use your own text corpus:
+    Replace the path in corpus_text = load_corpus('path_to_your_text.txt')
+    Optionally, uncomment and use the combine_texts_from_folder function for multiple files.
+
+📌 Notes
+  The script currently uses a single .txt file as input.
+  For large datasets, training time may increase. GPU acceleration is recommended.
+  Model saving/loading is not yet implemented but can be added with model.save() and tf.keras.models.load_model().
+
